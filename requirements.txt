@@ -2,7 +2,7 @@
 streamlit==1.26.0
 tensorflow==2.13.0
 keras==2.13.1
-scikit-learn==1.2.2
+scikit-learn==1.4.2
 xgboost==1.7.6
 
 # ====== Data & Math ======
@@ -38,4 +38,5 @@ packaging==23.2
 typing_extensions>=4.1.0,<4.6.0
 six==1.16.0
 pytz==2023.3
+
 
