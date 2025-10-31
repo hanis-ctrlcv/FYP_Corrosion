@@ -43,7 +43,7 @@ MODEL_PATH = "final_corrosion_model.keras"  # ✅ updated
 PREPROCESSOR_PATH = "preprocessor_corrosion.joblib"
 RF_PATH = "rf_model.joblib"
 XGB_PATH = "xgb_model.json"
-DATA_PATH = "C:/Users/HANIS/python jupiter/FYP/venv/dataset/cleaned_corrosion_regression_data.csv"
+DATA_PATH = "cleaned_corrosion_regression_data.csv"
 
 st.title("🛠️ Corrosion Monitoring Dashboard")
 st.caption("Powered by Reinforced Deep Learning (DL + RF + XGB Ensemble) ✅")
@@ -309,4 +309,5 @@ st.subheader("🔍 Feature Interaction Overview (Pairplot)")
 selected_cols = ["Rate (mm/yr)", "Concentration_%", "Temperature_C", "Aggressiveness_Index"]
 sns.pairplot(df[selected_cols], diag_kind="kde", corner=True)
 st.pyplot(plt)
+
 
