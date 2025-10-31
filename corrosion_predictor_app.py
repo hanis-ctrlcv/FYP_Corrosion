@@ -161,19 +161,33 @@ if uploaded_file:
             user_df = user_df.reindex(columns=expected)
             X_new = preprocessor.transform(user_df)
 
+            # === Model Predictions ===
             p_dl = model_dl.predict(X_new).ravel()
             p_rf = rf.predict(X_new)
             p_xgb = xgb.predict(X_new)
             p_ens = (p_dl + p_rf + p_xgb) / 3
 
-            user_df["Pred_Reinforced_DL(mm/yr)"] = p_ens
+            # === Append Predictions ===
+            result_df = pd.DataFrame({
+                "Environment": user_df.get("Environment", None),
+                "Material Family": user_df.get("Material Family", None),
+                "Concentration_%": user_df.get("Concentration_%", None),
+                "Temperature_C": user_df.get("Temperature_C", None),
+                "Pred_DL(mm/yr)": p_dl,
+                "Pred_RF(mm/yr)": p_rf,
+                "Pred_XGB(mm/yr)": p_xgb,
+                "Pred_Reinforced_DL(mm/yr)": p_ens
+            })
+
+            # === Save CSV Output ===
             timestamp = datetime.datetime.now().strftime("%Y%m%d_%H%M%S")
             os.makedirs("predictions", exist_ok=True)
             out_path = f"predictions/prediction_{timestamp}.csv"
-            user_df.to_csv(out_path, index=False)
+            result_df.to_csv(out_path, index=False)
 
             st.success(f"✅ Prediction Complete — Saved to {out_path}")
-            st.dataframe(user_df.head(10))
+            st.dataframe(result_df.head(10))
+
         except Exception as e:
             st.error(f"❌ Error during prediction: {e}")
 
@@ -309,5 +323,6 @@ st.subheader("🔍 Feature Interaction Overview (Pairplot)")
 selected_cols = ["Rate (mm/yr)", "Concentration_%", "Temperature_C", "Aggressiveness_Index"]
 sns.pairplot(df[selected_cols], diag_kind="kde", corner=True)
 st.pyplot(plt)
+
 
 
