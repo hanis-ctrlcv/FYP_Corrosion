@@ -1,7 +1,7 @@
 # ====== Core Frameworks ======
 streamlit==1.26.0
-tensorflow-cpu==2.9.3
-keras==2.9.0
+tensorflow==2.13.0
+keras==2.13.1
 scikit-learn==1.2.2
 xgboost==1.7.6
 
@@ -17,15 +17,15 @@ seaborn==0.12.2
 plotly==5.18.0
 
 # ====== TensorFlow Dependencies ======
-protobuf==3.20.3
-tensorboard==2.9.1
-tensorboard-data-server==0.6.1
+protobuf==4.23.4
+tensorboard==2.13.0
+tensorboard-data-server==0.7.1
 tensorboard-plugin-wit==1.8.1
-tensorflow-estimator==2.9.0
-h5py==3.8.0
+tensorflow-estimator==2.13.0
+h5py==3.9.0
 gast==0.4.0
 google-pasta==0.2.0
-flatbuffers==1.12
+flatbuffers==23.5.26
 opt_einsum==3.3.0
 wrapt==1.14.1
 termcolor==2.3.0
